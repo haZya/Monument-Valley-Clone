@@ -1,28 +1,40 @@
 using DG.Tweening;
 using System.Collections;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class RotatingBody : MonoBehaviour
 {
-    Vector3 m_EulerAngleVelocity;
+    private Vector3 eulerAngleVelocity;
+    [SerializeField] private NavMeshSurface surface;
 
-    IEnumerator WaitAndRotate()
+    private IEnumerator Start()
     {
+        eulerAngleVelocity = new Vector3(0, 90, 0);
+        //surface = GetComponent<NavMeshSurface>();
+
         while (true)
         {
             Rotate();
-            yield return new WaitForSeconds(5);
+            //ClearNavmesh();
+            yield return new WaitForSeconds(3);
+            //RebakeNavMesh();
+            yield return new WaitForSeconds(2);
         }
-    }
-
-    void Start()
-    {
-        m_EulerAngleVelocity = new Vector3(0, 90, 0);
-        StartCoroutine(WaitAndRotate());
     }
 
     private void Rotate()
     {
-        transform.DOBlendableRotateBy(m_EulerAngleVelocity, 3).SetEase(Ease.OutBack);
+        transform.DOBlendableRotateBy(eulerAngleVelocity, 3).SetEase(Ease.OutBack);
+    }
+
+    private void ClearNavmesh()
+    {
+        surface.RemoveData();
+    }
+
+    private void RebakeNavMesh()
+    {
+        surface.BuildNavMesh();
     }
 }

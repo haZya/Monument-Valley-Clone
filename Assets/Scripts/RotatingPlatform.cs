@@ -1,26 +1,56 @@
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RotatingPlatform : MonoBehaviour
 {
-    //[SerializeField] private Rigidbody rotatingBody;
+    [SerializeField] private NavMeshAgent agent;
 
-    //Rigidbody m_Rigidbody;
-    //Vector3 m_EulerAngleVelocity;
+    private NavMeshSurface surface;
 
-    //void Start()
+    private void Start()
+    {
+        surface = GetComponentInParent<NavMeshSurface>();
+    }
+
+    //float onMeshThreshold = 3;
+
+    //public bool IsAgentOnNavMesh(GameObject agentObject)
     //{
-    //    //Fetch the Rigidbody from the GameObject with this script attached
-    //    m_Rigidbody = GetComponent<Rigidbody>();
+    //    Vector3 agentPosition = agentObject.transform.position;
 
-    //    //Set the angular velocity of the Rigidbody (rotating around the Y axis, 100 deg/sec)
-    //    m_EulerAngleVelocity = new Vector3(0, 100, 0);
+    //    // Check for nearest point on navmesh to agent, within onMeshThreshold
+    //    if (NavMesh.SamplePosition(agentPosition, out NavMeshHit hit, onMeshThreshold, NavMesh.AllAreas))
+    //    {
+    //        // Check if the positions are vertically aligned
+    //        if (Mathf.Approximately(agentPosition.x, hit.position.x)
+    //            && Mathf.Approximately(agentPosition.z, hit.position.z))
+    //        {
+    //            // Lastly, check if object is below navmesh
+    //            return agentPosition.y >= hit.position.y;
+    //        }
+    //    }
+
+    //    return false;
     //}
 
-    //void FixedUpdate()
+    //private void Update()
     //{
-    //    Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
-    //    rotatingBody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
+    //    if (!IsAgentOnNavMesh(agent.gameObject))
+    //    {
+    //        ClearNavmesh();
+    //    }
     //}
+
+    private void ClearNavmesh()
+    {
+        surface.RemoveData();
+    }
+
+    private void RebakeNavMesh()
+    {
+        surface.BuildNavMesh();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -28,7 +58,8 @@ public class RotatingPlatform : MonoBehaviour
         if (collision.gameObject.layer == 7)
         {
             Debug.Log("player");
-            collision.gameObject.transform.parent = transform;
+            //RebakeNavMesh();
+            //collision.gameObject.transform.parent = transform;
         }
     }
 
@@ -36,7 +67,8 @@ public class RotatingPlatform : MonoBehaviour
     {
         if (collision.gameObject.layer == 7)
         {
-            collision.gameObject.transform.parent = null;
+            //ClearNavmesh();
+            //collision.gameObject.transform.parent = null;
         }
     }
 }
