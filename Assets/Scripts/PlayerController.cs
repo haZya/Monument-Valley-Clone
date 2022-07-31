@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput input;
     private NavMeshAgent agent;
     private ThirdPersonCharacter character;
+    private Animator animator;
 
     private void OnEnable()
     {
@@ -27,18 +28,19 @@ public class PlayerController : MonoBehaviour
         input = new PlayerInput();
         agent = GetComponent<NavMeshAgent>();
         character = GetComponent<ThirdPersonCharacter>();
+        animator = agent.GetComponent<Animator>();
     }
 
     private void Start()
     {
+        input.Player.Move.performed += OnMovement;
         agent.updateRotation = false;
     }
 
     private void Update()
     {
-        input.Player.Move.performed += OnMovement;
+        animator.SetBool("OnGround", true);
         Move();
-        ChangeAgentLinkMover();
     }
 
     private void OnMovement(InputAction.CallbackContext obj)
@@ -61,11 +63,5 @@ public class PlayerController : MonoBehaviour
         {
             character.Move(Vector3.zero, false, false);
         }
-    }
-
-    private void ChangeAgentLinkMover()
-    {
-        bool isSplitPlatform = agent.isOnOffMeshLink && agent.currentOffMeshLinkData.startPos == navMeshLink.startPoint;
-        agent.GetComponent<AgentLinkMover>().m_Method = isSplitPlatform ? OffMeshLinkMoveMethod.CustomTeleport : OffMeshLinkMoveMethod.Parabola;
     }
 }

@@ -7,8 +7,7 @@ public enum OffMeshLinkMoveMethod
     Teleport,
     NormalSpeed,
     Parabola,
-    Curve,
-    CustomTeleport
+    Curve
 }
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -31,8 +30,6 @@ public class AgentLinkMover : MonoBehaviour
                     yield return StartCoroutine(Parabola(agent, 2.0f, 0.5f));
                 else if (m_Method == OffMeshLinkMoveMethod.Curve)
                     yield return StartCoroutine(Curve(agent, 0.5f));
-                else if (m_Method == OffMeshLinkMoveMethod.CustomTeleport)
-                    CustomTeleport(agent);
                 agent.CompleteOffMeshLink();
             }
             yield return null;
@@ -78,13 +75,5 @@ public class AgentLinkMover : MonoBehaviour
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }
-    }
-
-    void CustomTeleport(NavMeshAgent agent)
-    {
-        OffMeshLinkData data = agent.currentOffMeshLinkData;
-        Vector3 startPos = agent.transform.position;
-        Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
-        agent.transform.position = endPos;
     }
 }

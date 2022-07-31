@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         Rigidbody m_Rigidbody;
         Animator m_Animator;
-        bool m_IsGrounded;
+        bool m_IsGrounded = true;
         float m_OrigGroundCheckDistance;
         const float k_Half = 0.5f;
         float m_TurnAmount;
@@ -51,7 +51,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // direction.
             if (move.magnitude > 1f) move.Normalize();
             move = transform.InverseTransformDirection(move);
-            CheckGroundStatus();
+            //CheckGroundStatus();
             move = Vector3.ProjectOnPlane(move, m_GroundNormal);
             m_TurnAmount = Mathf.Atan2(move.x, move.z);
             m_ForwardAmount = move.z;
