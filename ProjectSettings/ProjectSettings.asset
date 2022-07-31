@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 23
-  productGUID: 73223ca2957523548b7a954b2ee58836
+  productGUID: 1da739e061c960e44a06ccc8e28e98e0
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Monument Valley
+  productName: Unity-URP-Template
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -765,21 +765,7 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols:
-    Android: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    CloudRendering: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    EmbeddedLinux: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    GameCoreXboxOne: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    Lumin: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    Nintendo Switch: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    PS4: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    PS5: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    Stadia: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    Standalone: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    WebGL: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    Windows Store Apps: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    XboxOne: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
-    tvOS: PROBUILDER_EXPERIMENTAL_FEATURES;UNITY_POST_PROCESSING_STACK_V2
+  scriptingDefineSymbols: {}
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -867,7 +853,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 1
+  activeInputHandler: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
