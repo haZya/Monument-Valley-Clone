@@ -171,6 +171,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 // jump!
                 m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
+                //transform.position = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
                 m_IsGrounded = false;
                 m_Animator.applyRootMotion = false;
                 m_GroundCheckDistance = 0.1f;
@@ -181,7 +182,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             // help the character turn faster (this is in addition to root rotation in the animation)
             float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-            transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+            Vector3 eulerAngleVelocity = new Vector3(0, m_TurnAmount, 0);
+            Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * turnSpeed * Time.fixedDeltaTime);
+            m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
         }
 
 

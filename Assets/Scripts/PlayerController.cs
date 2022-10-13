@@ -1,14 +1,12 @@
-using Unity.AI.Navigation;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private NavMeshLink navMeshLink;
-
     private PlayerInput input;
-    //private NavMeshAgent agent;
+    private AIPath agent;
     private ThirdPersonCharacter character;
     private Animator animator;
 
@@ -25,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         input = new PlayerInput();
-        //agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<AIPath>();
         character = GetComponent<ThirdPersonCharacter>();
         animator = GetComponent<Animator>();
     }
@@ -38,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         animator.SetBool("OnGround", true);
-        //Move();
+        Move();
     }
 
     private void OnMovement(InputAction.CallbackContext obj)
@@ -47,19 +45,19 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            //agent.SetDestination(hit.point);
+            agent.destination = hit.point;
         }
     }
 
     private void Move()
     {
-        //if (agent.remainingDistance > agent.stoppingDistance)
-        //{
-        //    character.Move(agent.desiredVelocity, false, false);
-        //}
-        //else
-        //{
-        //    character.Move(Vector3.zero, false, false);
-        //}
+        if (!agent.reachedDestination)
+        {
+            character.Move(agent.desiredVelocity, false, false);
+        }
+        else
+        {
+            character.Move(Vector3.zero, false, false);
+        }
     }
 }
