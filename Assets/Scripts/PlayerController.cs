@@ -1,4 +1,3 @@
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -6,8 +5,6 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private NavMeshLink navMeshLink;
-
     private PlayerInput input;
     private NavMeshAgent agent;
     private ThirdPersonCharacter character;
@@ -28,7 +25,7 @@ public class PlayerController : MonoBehaviour
         input = new PlayerInput();
         agent = GetComponent<NavMeshAgent>();
         character = GetComponent<ThirdPersonCharacter>();
-        animator = agent.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
