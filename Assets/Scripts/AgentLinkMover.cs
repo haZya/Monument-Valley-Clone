@@ -72,6 +72,13 @@ public class AgentLinkMover : MonoBehaviour
         {
             float yOffset = m_Curve.Evaluate(normalizedTime);
             agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
+
+            // Custom
+            Vector3 relativePos = endPos - transform.position;
+            Quaternion toRotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, normalizedTime += Time.deltaTime * duration);
+
+
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }

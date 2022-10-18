@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d3ec438884ee1404cb902926d1a0a46a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 5f29c45d2da29c94aaa04af99b0d0404, type: 2}
+  _fileAsset: {instanceID: 0}
+  _assetPath: Assets/Materials/Substance/byzantine-ornament-carpet.sbsar
